@@ -1,0 +1,6 @@
+.idea/
+.c9/
+node_modules/
+npm-debug.log
+token.json
+public/bower_components/

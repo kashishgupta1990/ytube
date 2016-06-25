@@ -1,0 +1,21 @@
+{
+  "name": "ytube",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Kashish Gupta"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "video.js": "^5.10.6"
+  }
+}
