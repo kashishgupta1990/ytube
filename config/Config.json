@@ -2,7 +2,7 @@
   "development": {
     "server": {
       "host": "localhost",
-      "port": "9999",
+      "port": "8899",
       "allowCrossDomain": true
     },
     "database": {
@@ -37,7 +37,7 @@
   "beta": {
     "server": {
       "host": "localhost",
-      "port": "9999",
+      "port": "8899",
       "allowCrossDomain": true
     },
     "database": {
