@@ -4,7 +4,7 @@
     <title>yTube Application</title>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/list.js"></script>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="col-md-6">
         <form>
             <div class="form-group text-center">
-                <h2>Search Video</h2>
+                <h2>Paste YouTube URL</h2>
             </div>
         </form>
     </div>
@@ -24,14 +24,14 @@
     <div class="col-md-5">
         <form>
             <div class="form-group text-center">
-                <input id="txtUrl" type="text" class="form-control" placeholder="Example: Yo Yo honey singh">
+                <input id="txtUrl" type="text" class="form-control" placeholder="Paste YouTube Url Here">
             </div>
         </form>
     </div>
     <div class="col-md-3">
         <form>
             <div class="form-group">
-                <button type="button" onclick="API.submitYoutubeUrl()" class="btn btn-primary">Search</button>
+                <button type="button" onclick="API.submitYoutubeUrl()" class="btn btn-primary">Search Video Formats</button>
             </div>
         </form>
     </div>
