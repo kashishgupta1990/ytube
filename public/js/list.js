@@ -29,10 +29,10 @@ function init() {
                     '<tr>' +
                     '<td> '+(index+1)+'</td>' +
                     '<td>' + videoObject.format + '</td>' +
-                    '<td>'+ Math.round(videoObject.filesize / 1024) + ' mb </td>' +
+                    '<td>'+ Math.round(videoObject.filesize / 1024) + ' MB </td>' +
                     '<td>' + videoObject.ext + '</td>' +
                     '<td><a target="_blank" href="' + downloadLink + '">Download</a></td>' +
-                    '<td><a target="_blank" href="/watch.html?mime=' + mimeType + '&data=' + base64Encode + '">Watch Now</a></td>' +
+                    '<td><a target="_blank" href="/watch.html?mime=' + mimeType + '&data=' + base64Encode + '">Play Now</a></td>' +
                     '</tr>';
             });
             trElement.append(tdElement);
@@ -74,8 +74,16 @@ function init() {
                     .done(success)
                     .fail(fail);
             }else{
-                alert('Field left blank.');
+                alert('Field can not left blank.');
             }
         }
+    };
+
+    // Process Query Data
+    var videoUrl = getQueryParamFromUrl(window.location.href)["data"];
+    if(videoUrl){
+        videoUrl = atob(videoUrl);
+        $('#txtUrl').val(videoUrl);
+        window.API.submitYoutubeUrl();
     }
 }

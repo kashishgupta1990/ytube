@@ -16,32 +16,20 @@ $(document).ready(init);
 
 function init() {
     window.UI = {
-        createVideoFormatList: function (videoInfo) {
-            var videoList = videoInfo.formats;
+        createVideoList: function (videoList) {
             var trElement = $('#videoList');
             trElement.empty();
             var tdElement = '';
-            $.each(videoList, function (index, videoObject) {
-                var downloadLink = '/api/v1/youtube/download/' + index + '/' + encodeURIComponent(videoInfo.webpage_url);
-                var base64Encode = btoa(downloadLink);
-                var mimeType = getQueryParamFromUrl(videoObject.url)["mime"];
+            $.each(videoList, function (index, video) {
                 tdElement +=
                     '<tr>' +
                     '<td> '+(index+1)+'</td>' +
-                    '<td>' + videoObject.format + '</td>' +
-                    '<td>'+ Math.round(videoObject.filesize / 1024) + ' mb </td>' +
-                    '<td>' + videoObject.ext + '</td>' +
-                    '<td><a target="_blank" href="' + downloadLink + '">Download</a></td>' +
-                    '<td><a target="_blank" href="/watch.html?mime=' + mimeType + '&data=' + base64Encode + '">Watch Now</a></td>' +
+                    '<td>' + video.title + '</td>' +
+                    '<td><a href="/list.html?data=' + btoa(video.href) + '">More</a></td>' +
                     '</tr>';
             });
             trElement.append(tdElement);
             UI.showTable();
-        },
-        setVideoTitle: function (response) {
-            var videoTitle = $('#videoName');
-            videoTitle.empty();
-            videoTitle.html(response.fulltitle);
         },
         showTable:function(){
             $('#tableBlock').removeClass('hide');
@@ -51,30 +39,29 @@ function init() {
         }
     };
     window.API = {
-        submitYoutubeUrl: function () {
-            var txtYoutubeUrl = $('#txtUrl').val();
+        submitKeyword: function () {
+            var txtKeyword = $('#txtKeyword').val();
             var _success = function (response) {
-                UI.setVideoTitle(response);
-                UI.createVideoFormatList(response)
+                UI.createVideoList(response)
             };
             var _fail = function (err) {
                 var msgObject =JSON.parse(err.responseText);
                 console.log(msgObject.message);
                 alert(msgObject.message);
             };
-            API.getVideoInfo(txtYoutubeUrl, _success, _fail);
+            API.getKeywordInfo(txtKeyword, _success, _fail);
         },
-        getVideoInfo: function (youtubeUrl, success, fail) {
-            if(youtubeUrl.trim()){
+        getKeywordInfo: function (searchKeyword, success, fail) {
+            if(searchKeyword.trim()){
                 $.ajax({
-                        url: "/api/v1/youtube/" + encodeURIComponent(youtubeUrl),
+                        url: "/api/v1/youtube/search/" + searchKeyword,
                         dataType: 'json',
                         type: "GET"
                     })
                     .done(success)
                     .fail(fail);
             }else{
-                alert('Field left blank.');
+                alert('Field can not left blank.');
             }
         }
     }
