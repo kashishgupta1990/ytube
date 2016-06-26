@@ -24,8 +24,7 @@ function init() {
                 tdElement +=
                     '<tr>' +
                     '<td> '+(index+1)+'</td>' +
-                    '<td>' + video.title + '</td>' +
-                    '<td><a href="/list.html?data=' + btoa(video.href) + '">More</a></td>' +
+                    '<td><a href="/list.html?data=' + btoa(video.href) + '">video.title</a></td>' +
                     '</tr>';
             });
             trElement.append(tdElement);
