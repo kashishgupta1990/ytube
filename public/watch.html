@@ -37,14 +37,25 @@
     </style>
     <link rel="stylesheet" href="bower_components/video.js/dist/video-js.min.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/video.js/dist/video.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/watch.js"></script>
 </head>
 <body>
-<video id="videoPlayer"
-       class="video-js vjs-default-skin vjs-big-play-centered"
-       controls preload="auto" width="640" height="264">
-</video>
+<div class="row">
+    <h1></h1>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <video id="videoPlayer"
+               class="video-js vjs-default-skin vjs-big-play-centered"
+               controls preload="auto" width="854" height="480">
+        </video>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </body>
 </html>
 

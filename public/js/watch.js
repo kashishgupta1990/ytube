@@ -10,23 +10,25 @@ function getUrlVars() {
     return vars;
 }
 function init() {
-    console.log('yoyoyo');
     var videoLink = atob(getUrlVars()["data"]);
     var videoMimeType = getUrlVars()["mime"];
+    var videoPoster = getUrlVars()["poster"];
     videoMimeType = decodeURIComponent(videoMimeType);
-
-    console.log('>>> ', videoLink, videoMimeType);
+    if (videoPoster != 'empty') {
+        videoPoster = atob(videoPoster);
+    }
     var videoPlayerDiv = document.getElementById("videoPlayer");
-
-    window.videojs(videoPlayerDiv, {
+    var options = {
         controls: true,
         class: 'video-js vjs-default-skin',
         techOrder: ["html5", "flash"]
-    }, function () {
+    };
+    if (videoPoster != 'empty') {
+        options.poster = videoPoster;
+    }
+    window.videojs(videoPlayerDiv, options, function () {
         var myPlayer = this;
-        console.log('>> Load success');
-        myPlayer.src({"type":videoMimeType, "src":videoLink});
-        myPlayer.play();
+        myPlayer.src({"type": videoMimeType, "src": videoLink});
     });
 }
 $(document).ready(init);
