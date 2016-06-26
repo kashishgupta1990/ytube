@@ -18,29 +18,36 @@ function init() {
     window.UI = {
         createVideoFormatList: function (videoInfo) {
             var videoList = videoInfo.formats;
-            var ulElement = $('#videoList');
-            ulElement.empty();
-            var liElement = '';
+            var trElement = $('#videoList');
+            trElement.empty();
+            var tdElement = '';
             $.each(videoList, function (index, videoObject) {
                 var downloadLink = '/api/v1/youtube/download/' + index + '/' + encodeURIComponent(videoInfo.webpage_url);
                 var base64Encode = btoa(downloadLink);
                 var mimeType = getQueryParamFromUrl(videoObject.url)["mime"];
-                liElement +=
-                    '' +
-                    '<li>' +
-                    '<p><b>Format: </b>' + videoObject.format + '</p>' +
-                    '<p><b>File Size (MB): </b>' + videoObject.filesize / 1024 + '</p>' +
-                    '<p><b>File Extension: </b>.' + videoObject.ext + '</p>' +
-                    '<a target="_blank" href="' + downloadLink + '">Download</a>&nbsp;&nbsp;&nbsp;' +
-                    '<a target="_blank" href="/watch.html?mime=' + mimeType + '&data=' + base64Encode + '">Watch Now</a>' +
-                    '</li>';
+                tdElement +=
+                    '<tr>' +
+                    '<td> '+(index+1)+'</td>' +
+                    '<td>' + videoObject.format + '</td>' +
+                    '<td>'+ Math.round(videoObject.filesize / 1024) + ' mb </td>' +
+                    '<td>' + videoObject.ext + '</td>' +
+                    '<td><a target="_blank" href="' + downloadLink + '">Download</a></td>' +
+                    '<td><a target="_blank" href="/watch.html?mime=' + mimeType + '&data=' + base64Encode + '">Watch Now</a></td>' +
+                    '</tr>';
             });
-            ulElement.append(liElement);
+            trElement.append(tdElement);
+            UI.showTable();
         },
         setVideoTitle: function (response) {
             var videoTitle = $('#videoName');
             videoTitle.empty();
             videoTitle.html(response.fulltitle);
+        },
+        showTable:function(){
+            $('#tableBlock').removeClass('hide');
+        },
+        hideTable:function(){
+            $('#tableBlock').addClass('hide');
         }
     };
     window.API = {

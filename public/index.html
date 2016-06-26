@@ -3,26 +3,62 @@
 <head>
     <title>yTube Application</title>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <style>
-        .center {
-        }
-
-        input > text {
-            width: 100%;
-        }
-    </style>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <form action="API.submitYoutubeUrl()">
-        <label for="txtUrl">YouTube Url:</label>
-        <input type="text" placeholder="past youtube url" id="txtUrl">
-        <input type="button" value="Submit" onclick="API.submitYoutubeUrl()"> <br> <br>
-        <h2 id="videoName"></h2>
-        <ol id="videoList">
-        </ol>
-    </form>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group text-center">
+                <h2>Paste YouTube URL</h2>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+        <form>
+            <div class="form-group text-center">
+                <input id="txtUrl" type="text" class="form-control" placeholder="Paste YouTube Url Here">
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <form>
+            <div class="form-group">
+                <button type="button" onclick="API.submitYoutubeUrl()" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div id="tableBlock" class="col-md-10 hide">
+        <h2 id="videoName" class="sub-header"></h2>
+        <div class="table-responsive">
+            <table class="table table-striped" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Format</th>
+                    <th>File Size (MB)</th>
+                    <th>File Format</th>
+                    <th>Download Link</th>
+                    <th>Watch Link</th>
+                </tr>
+                </thead>
+                <tbody id="videoList" >
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
 </div>
 </body>
 </html>

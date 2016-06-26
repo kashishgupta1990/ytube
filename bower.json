@@ -15,7 +15,10 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.0.0",
-    "video.js": "^5.10.6"
+    "jquery": "^2.1.4",
+    "video.js": "^5.10.6",
+    "bootstrap": "^3.3.6"
   }
 }
+
+
